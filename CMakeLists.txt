@@ -8,6 +8,11 @@ project(game
 	LANGUAGES C
 )
 
+project(construction
+	VERSION 1.0.0
+	DESCRIPTION "Construction modelling"
+)
+
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 FetchContent_Declare(
@@ -30,6 +35,9 @@ FetchContent_MakeAvailable(raylib)
 
 add_executable(game main.c)
 target_link_libraries(game PRIVATE box2d raylib)
+
+add_executable(construction src/vakwerk.cpp src/construction.cpp)
+target_link_libraries(construction PRIVATE box2d raylib)
 
 if (MSVC)
 	set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT game)

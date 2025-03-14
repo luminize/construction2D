@@ -5,6 +5,6 @@
 #include <iostream>
 
 int main(){
-    construction vakwerk("constructie");
+    Construction vakwerk("constructie");
     std::cout << vakwerk.getname();
 }

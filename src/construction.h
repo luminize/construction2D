@@ -4,14 +4,14 @@
 #include <vector>
 #include <string>
 
-class construction
+class Construction
 {
 private:
     std::string name;
 public:
-    construction();
-    construction(std::string construction_name);
-    ~construction();
+    Construction();
+    Construction(std::string construction_name);
+    ~Construction();
 
     std::string getname();
 };

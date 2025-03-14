@@ -1,18 +1,18 @@
 #include "construction.h"
 
-construction::construction()
+Construction::Construction()
 {
 }
 
-construction::construction(std::string construction_name)
+Construction::Construction(std::string construction_name)
 {
     name = construction_name;
 }
 
-construction::~construction()
+Construction::~Construction()
 {
 }
 
-std::string construction::getname(){
+std::string Construction::getname(){
     return name;
 }

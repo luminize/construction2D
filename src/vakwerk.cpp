@@ -1,7 +1,7 @@
 #include "box2d/box2d.h"
 #include "raylib.h"
 #include "construction.h"
-#include "json.hpp"
+#include "nlohmann/json.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -9,12 +9,15 @@
 using json = nlohmann::json;
 
 int main(){
-    Construction vakwerk("constructie");
-    std::ifstream jsonfile("jsonfile.json");
-  
-    std::ifstream f("example.json");
-    json data = json::parse(f);
+    // instantiate a new construction
+    Construction vakwerk("constructie"); 
 
-    std::cout << vakwerk.getname();
+    // read a json file to build construction from
+    std::ifstream jsonfile("jsonfile.json");
+    json data = json::parse(jsonfile);
+    jsonfile.close();
+
+    // for testing purposes
+    std::cout << vakwerk.getname() << std::endl;
     std::cout << data;
 }

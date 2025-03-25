@@ -46,7 +46,7 @@ FetchContent_MakeAvailable(json)
 add_executable(game main.c)
 target_link_libraries(game PRIVATE box2d raylib)
 
-add_executable(construction src/vakwerk.cpp src/construction.cpp)
+add_executable(construction src/vakwerk.cpp src/construction.cpp src/elements.cpp)
 target_link_libraries(construction PRIVATE box2d raylib nlohmann_json::nlohmann_json)
 
 if (MSVC)

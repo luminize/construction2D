@@ -2,14 +2,32 @@
 #define ELEMENTS_H
 
 #include <string>
+#include <vector>
+//#include "construction.h"
+
+class Position
+{
+public:
+	double x = 0.;
+	double y = 0.;
+	Position(double x, double y);
+	Position();
+};
+
 
 class Element
 {
-private:
+protected:
     std::string name;
+	Position position;
 public:
     Element();
-    Element(std::string element_name);
+    Element(std::string name);
+	Element(Position position);
+	Element(std::string name, Position position);
+
+	void set_name(std::string name);
+	void set_position(Position position);
 };
 
 
@@ -22,12 +40,18 @@ public:
 };
 
 
-class Beam
+class Beam : public Element
 {
-private:
+protected:
+	double length = 0.;
 
 public:
+	Beam();
+	Beam(double length);
+	Beam(double length, Position position);
+	Beam(std::string name, double length, Position position);
 
+	void set_length(double length);
 };
 
 

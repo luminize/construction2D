@@ -1,0 +1,37 @@
+{
+  "elements": [
+    {
+      "name": "beam1",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "length": 2
+    },
+    {
+      "name": "beam2",
+      "position": {
+        "x": 2,
+        "y": 0
+      },
+      "length": 3
+    },
+    {
+      "name": "hinge1",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "connections": [
+    {
+      "first_element": "hinge1",
+      "second_element": "beam1"
+    },
+    {
+      "first_element": "hinge1",
+      "second_element": "beam2"
+    }
+  ]
+}

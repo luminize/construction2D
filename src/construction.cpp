@@ -12,7 +12,7 @@ Connection::~Connection()
 }
 
 
-Connection::Connection(Element element1, Element element2)
+Connection::Connection(std::shared_ptr<Element> element1, std::shared_ptr<Element> element2)
 {
 	this->element1 = element1;
 	this->element2 = element2;
@@ -55,11 +55,26 @@ void Construction::add_connection(Connection connection) {
 }
 
 
-void Construction::add_connection(Element element1, Element element2) {
+void Construction::add_connection(std::shared_ptr<Element> element1, std::shared_ptr<Element> element2) {
 	Connection connection(element1, element2);
 	this->add_connection(connection);
 }
 
+std::shared_ptr<Element> Construction::find_element(std::string name) {
+	// find an element by name in the elements vector
+	std::shared_ptr<Element> element_ptr = nullptr;
+	bool element_found = false;
+	int i = 0;
+
+	while (i < this->elements.size() && !element_found) {
+		if (this->elements[i].get_name() == name){
+			element_ptr = std::make_shared<Element>(this->elements[i]);
+			element_found = true;
+			}
+		i++;
+	}
+	return element_ptr;
+}
 
 void Construction::create_construction_from_json(std::string filename) {
 	// read a json file to build construction from
@@ -79,17 +94,17 @@ void Construction::create_construction_from_json(std::string filename) {
 
 	// populate the connections vector
 	for (int i = 0; i < jsondata["connections"].size(); i++) {
-		Element e_first = jsondata["connections"][i]["first_element"];
-		Element e_second = jsondata["connections"][i]["second_element"];
-		Connection c_connection(e_first, e_second);
+		
+		// should we silently fail if the element name is not found in the elements
+		// vector or should an element be created?
+		// same goes for tags not being in the json file...
 
-		// the above now creates new elements that have no relation to
-		// elements already created in the elements vector
-		// instead of new elements, there should be a pointer to the 
-		// element with the corresponding name
+		std::string e_first = jsondata["connections"][i]["first_element"];
+		std::string e_second = jsondata["connections"][i]["second_element"];
+		std::shared_ptr<Element> ptr_first = this->find_element(e_first);
+		std::shared_ptr<Element> ptr_second = this->find_element(e_second);
 
-		// check also that the element string exists with the same name 
-		// in the elements vector
+		Connection c_connection(ptr_first, ptr_second);
 
 		this->add_connection(c_connection);
 	}

@@ -13,11 +13,11 @@
 class Connection
 {
 protected:
-	Element element1;
-	Element element2;
+	std::shared_ptr<Element> element1;
+	std::shared_ptr<Element> element2;
 public:
 	Connection();
-	Connection(Element element1, Element element2);
+	Connection(std::shared_ptr<Element> element1, std::shared_ptr<Element> element2);
 	~Connection();
 };
 
@@ -37,8 +37,8 @@ public:
     std::string get_name();
 	void add_element(Element element);
 	void add_connection(Connection connection);
-	void add_connection(Element element1, Element element2);
-
+	void add_connection(std::shared_ptr<Element> element1, std::shared_ptr<Element> element2);
+	std::shared_ptr<Element> find_element(std::string name);
 	void create_construction_from_json(std::string filename);
 };
 

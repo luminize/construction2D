@@ -38,6 +38,11 @@ void Element::set_name(std::string name)
 	this->name = name;
 }
 
+std::string Element::get_name()
+{
+	return name;
+}
+
 void Element::set_position(Position position)
 {
 	this->position = position;

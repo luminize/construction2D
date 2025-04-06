@@ -10,5 +10,4 @@ int main(){
     Construction vakwerk("constructie"); 
 
 	vakwerk.create_construction_from_json("simple_construction.json");
-
 }

@@ -27,6 +27,7 @@ public:
 	Element(std::string name, Position position);
 
 	void set_name(std::string name);
+	std::string get_name();
 	void set_position(Position position);
 };
 
